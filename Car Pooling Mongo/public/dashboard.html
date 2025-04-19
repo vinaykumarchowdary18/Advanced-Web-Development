@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Carpool Connect</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .active-tab {
+            background-color: #f0f7ff;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="logo">
+                <h1>Carpool Connect</h1>
+            </div>
+            <nav class="user-nav">
+                <div class="user-profile">
+                    <span>Welcome, <span id="username">User</span></span>
+                    <img src="/images/default-profile.jpg" alt="Profile" class="profile-pic">
+                </div>
+                <a href="/logout" class="logout-btn">Logout</a>
+            </nav>
+        </header>
+        
+        <div class="dashboard-content">
+            <aside class="sidebar">
+                <ul class="nav-menu">
+                    <li><a href="/dashboard.html" class="active-tab"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="/find-ride.html"><i class="fas fa-search"></i> Find a Ride</a></li>
+                    <li><a href="/offer-ride.html"><i class="fas fa-car"></i> Offer a Ride</a></li>
+                    <li><a href="/my-rides.html"><i class="fas fa-history"></i> My Rides</a></li>
+                    <li><a href="/messages.html"><i class="fas fa-envelope"></i> Messages</a></li>
+                    <li><a href="/profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                </ul>
+                
+                <div id="vehicleCard" class="vehicle-card" style="display: none;">
+                    <h3>Your Vehicle</h3>
+                    <p><strong>Type:</strong> <span id="vehicleType">Not specified</span></p>
+                    <p><strong>Seats:</strong> <span id="vehicleSeats">Not specified</span></p>
+                    <p><strong>License:</strong> <span id="vehicleLicense">Not specified</span></p>
+                </div>
+            </aside>
+            
+            <main class="main-content">
+                <section class="hero-section">
+                    <div class="hero-text">
+                        <h2>Find your perfect ride match</h2>
+                        <p>Save money and reduce your carbon footprint by sharing rides with others going your way</p>
+                    </div>
+                    <div class="hero-image">
+                        <img src="/images/carpool-hero.jpg" alt="People carpooling">
+                    </div>
+                </section>
+                
+                <section class="quick-actions">
+                    <div class="action-card" onclick="location.href='/find-ride.html'">
+                        <i class="fas fa-search"></i>
+                        <h3>Find a Ride</h3>
+                        <p>Browse available rides matching your route</p>
+                    </div>
+                    <div class="action-card" onclick="location.href='/offer-ride.html'">
+                        <i class="fas fa-car"></i>
+                        <h3>Offer a Ride</h3>
+                        <p>Share your vehicle and split costs</p>
+                    </div>
+                    <div class="action-card" onclick="location.href='/my-rides.html'">
+                        <i class="fas fa-history"></i>
+                        <h3>My Rides</h3>
+                        <p>View your upcoming and past rides</p>
+                    </div>
+                </section>
+                
+                <section class="recent-activity">
+                    <h3><i class="fas fa-bell"></i> Recent Activity</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <i class="fas fa-car"></i>
+                            <div class="activity-content">
+                                <p>Your ride to <strong>Downtown</strong> has been confirmed for tomorrow at 8:30 AM</p>
+                                <span class="activity-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-user-friends"></i>
+                            <div class="activity-content">
+                                <p><strong>Sarah</strong> accepted your ride request</p>
+                                <span class="activity-time">1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Highlight current page in navigation
+            const currentPage = window.location.pathname.split('/').pop() || 'dashboard.html';
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href').split('/').pop();
+                if (currentPage === linkPage) {
+                    link.classList.add('active-tab');
+                } else {
+                    link.classList.remove('active-tab');
+                }
+            });
+            
+            // Load user data if available
+            if (typeof userData !== 'undefined') {
+                document.getElementById('username').textContent = userData.name;
+                if (userData.vehicle.hasVehicle) {
+                    document.getElementById('vehicleCard').style.display = 'block';
+                    document.getElementById('vehicleType').textContent = userData.vehicle.type;
+                    document.getElementById('vehicleSeats').textContent = userData.vehicle.seats;
+                    document.getElementById('vehicleLicense').textContent = userData.vehicle.licensePlate;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

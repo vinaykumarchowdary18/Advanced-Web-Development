@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Carpool Connect</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .error { color: red; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="logo">
+                <h1>Carpool Connect</h1>
+                <p>Join our ride-sharing community</p>
+            </div>
+            
+            <form id="signupForm" action="/signup" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name*</label>
+                    <input type="text" id="name" name="name" required>
+                    <div id="nameError" class="error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" required>
+                    <div id="emailError" class="error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password* (min 6 characters)</label>
+                    <input type="password" id="password" name="password" required minlength="6">
+                    <div id="passwordError" class="error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number*</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <div id="phoneError" class="error"></div>
+                </div>
+                
+                <div class="vehicle-info">
+                    <h3>Vehicle Information (if applicable)</h3>
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="hasVehicle" name="hasVehicle">
+                        <label for="hasVehicle">I have a vehicle to share</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicleType">Vehicle Type</label>
+                        <input type="text" id="vehicleType" name="vehicleType" disabled>
+                        <div id="vehicleTypeError" class="error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="seats">Available Seats</label>
+                        <input type="number" id="seats" name="seats" min="1" max="10" disabled>
+                        <div id="seatsError" class="error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="licensePlate">License Plate</label>
+                        <input type="text" id="licensePlate" name="licensePlate" disabled>
+                        <div id="licensePlateError" class="error"></div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-primary">Create Account</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="/login.html">Log in</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hasVehicleCheckbox = document.getElementById('hasVehicle');
+            const vehicleFields = document.querySelectorAll('.vehicle-info input:not(#hasVehicle)');
+            
+            // Enable/disable vehicle fields
+            hasVehicleCheckbox.addEventListener('change', function() {
+                vehicleFields.forEach(field => {
+                    field.disabled = !this.checked;
+                    if (!this.checked) field.value = '';
+                    field.required = this.checked;
+                });
+            });
+            
+            // Form validation
+            document.getElementById('signupForm').addEventListener('submit', function(e) {
+                let isValid = true;
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                const phone = document.getElementById('phone').value.trim();
+                const hasVehicle = document.getElementById('hasVehicle').checked;
+                
+                // Clear previous errors
+                document.querySelectorAll('.error').forEach(el => el.textContent = '');
+                
+                // Validate required fields
+                if (!name) {
+                    document.getElementById('nameError').textContent = 'Name is required';
+                    isValid = false;
+                }
+                
+                if (!email) {
+                    document.getElementById('emailError').textContent = 'Email is required';
+                    isValid = false;
+                } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+                    document.getElementById('emailError').textContent = 'Invalid email format';
+                    isValid = false;
+                }
+                
+                if (!password) {
+                    document.getElementById('passwordError').textContent = 'Password is required';
+                    isValid = false;
+                } else if (password.length < 6) {
+                    document.getElementById('passwordError').textContent = 'Password must be at least 6 characters';
+                    isValid = false;
+                }
+                
+                if (!phone) {
+                    document.getElementById('phoneError').textContent = 'Phone number is required';
+                    isValid = false;
+                }
+                
+                // Validate vehicle fields if applicable
+                if (hasVehicle) {
+                    const vehicleType = document.getElementById('vehicleType').value.trim();
+                    const seats = document.getElementById('seats').value;
+                    const licensePlate = document.getElementById('licensePlate').value.trim();
+                    
+                    if (!vehicleType) {
+                        document.getElementById('vehicleTypeError').textContent = 'Vehicle type is required';
+                        isValid = false;
+                    }
+                    
+                    if (!seats) {
+                        document.getElementById('seatsError').textContent = 'Available seats is required';
+                        isValid = false;
+                    }
+                    
+                    if (!licensePlate) {
+                        document.getElementById('licensePlateError').textContent = 'License plate is required';
+                        isValid = false;
+                    }
+                }
+                
+                if (!isValid) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

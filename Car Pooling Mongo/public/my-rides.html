@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Same head as dashboard.html -->
+    <title>My Rides | Carpool Connect</title>
+</head>
+<body>
+    <!-- Same header and sidebar as dashboard.html -->
+    
+    <main class="main-content">
+        <section class="my-rides-section">
+            <h2><i class="fas fa-history"></i> My Rides</h2>
+            
+            <div class="rides-tabs">
+                <button class="tab-btn active" data-tab="upcoming">Upcoming</button>
+                <button class="tab-btn" data-tab="past">Past</button>
+                <button class="tab-btn" data-tab="requests">Requests</button>
+            </div>
+            
+            <div class="rides-container">
+                <div id="upcoming-rides" class="rides-list active">
+                    <h3>Your Upcoming Rides</h3>
+                    <div class="no-rides">No upcoming rides scheduled</div>
+                    <!-- Rides will be added here dynamically -->
+                </div>
+                
+                <div id="past-rides" class="rides-list">
+                    <h3>Your Past Rides</h3>
+                    <div class="no-rides">No past rides found</div>
+                </div>
+                
+                <div id="ride-requests" class="rides-list">
+                    <h3>Ride Requests</h3>
+                    <div class="no-rides">No ride requests</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/my-rides.js"></script>
+</body>
+</html>

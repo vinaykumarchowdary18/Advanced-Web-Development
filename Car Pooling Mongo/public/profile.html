@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Same head as dashboard.html -->
+    <title>My Profile | Carpool Connect</title>
+</head>
+<body>
+    <!-- Same header and sidebar as dashboard.html -->
+    
+    <main class="main-content">
+        <section class="profile-section">
+            <h2><i class="fas fa-user"></i> My Profile</h2>
+            
+            <div class="profile-container">
+                <div class="profile-info">
+                    <div class="profile-picture">
+                        <img src="/images/default-profile.png" alt="Profile">
+                        <button class="btn-secondary">Change Photo</button>
+                    </div>
+                    
+                    <form id="profileForm" class="profile-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" value="John Doe" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" value="john@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" value="+91 9876543210" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Change Password</label>
+                            <input type="password" id="password" placeholder="Enter new password">
+                        </div>
+                        
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="hasVehicle">
+                            <label for="hasVehicle">I have a vehicle to share</label>
+                        </div>
+                        
+                        <div id="vehicleInfo" class="vehicle-info">
+                            <div class="form-group">
+                                <label for="vehicleType">Vehicle Type</label>
+                                <input type="text" id="vehicleType" value="Sedan">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="vehicleSeats">Available Seats</label>
+                                <input type="number" id="vehicleSeats" min="1" value="4">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="licensePlate">License Plate</label>
+                                <input type="text" id="licensePlate" value="MH01AB1234">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Update Profile</button>
+                    </form>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <h3>Total Rides</h3>
+                        <p>12</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Rating</h3>
+                        <p>4.8 ★</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Member Since</h3>
+                        <p>Jan 2023</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/profile.js"></script>
+</body>
+</html>

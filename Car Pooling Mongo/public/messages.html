@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Same head as dashboard.html -->
+    <title>Messages | Carpool Connect</title>
+</head>
+<body>
+    <!-- Same header and sidebar as dashboard.html -->
+    
+    <main class="main-content">
+        <section class="messages-section">
+            <h2><i class="fas fa-envelope"></i> Messages</h2>
+            
+            <div class="messages-container">
+                <div class="conversations-list">
+                    <div class="conversation active">
+                        <img src="/images/default-profile.png" alt="User">
+                        <div class="conversation-info">
+                            <h4>John Doe</h4>
+                            <p>Hey, about the ride tomorrow...</p>
+                            <span class="time">10:30 AM</span>
+                        </div>
+                    </div>
+                    <!-- More conversations would appear here -->
+                </div>
+                
+                <div class="message-area">
+                    <div class="message-header">
+                        <h3>John Doe</h3>
+                    </div>
+                    
+                    <div class="messages">
+                        <div class="message received">
+                            <p>Hey, about the ride tomorrow, what time are you leaving?</p>
+                            <span class="time">10:30 AM</span>
+                        </div>
+                        <div class="message sent">
+                            <p>I'm planning to leave around 8:30 AM</p>
+                            <span class="time">10:32 AM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="message-input">
+                        <input type="text" placeholder="Type your message...">
+                        <button class="btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/messages.js"></script>
+</body>
+</html>
