@@ -1,4 +1,4 @@
-npm init -y  //for node js
+npm install node   //for node js
 
 npm install express // to install express 
 
